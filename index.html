@@ -3595,13 +3595,13 @@ const LEN=p=>{try{return p.getTotalLength()||1000}catch(e){return 1000}};
     const items=cartItems();if(!items.length)return;
     const btn=$('#coPay'),msg=$('#coMsg');btn.disabled=true;btn.textContent='Opening secure checkout';msg.textContent='';
     const fail=t=>{msg.textContent=t;btn.disabled=false;btn.textContent='Continue to secure payment';};
-    if(location.protocol==='file:'||!/^https?:$/.test(location.protocol))return fail('Online payment isn't live yet. Send us your part numbers through Request a quote and we'll email you a secure payment link.');
+    if(location.protocol==='file:'||!/^https?:$/.test(location.protocol))return fail('Online payment is not live yet. Send us your part numbers through Request a quote and we will email you a secure payment link.');
     try{
       const r=await fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({items:items.map(i=>({id:i.p.id,qty:i.q})),delivery:delivery(),note:$('#coNote').value})});
       const j=await r.json().catch(()=>({}));
       if(r.ok&&j.url){location.assign(j.url);return;}
-      fail(j.error||'Online payment isn't live yet. Send us your part numbers through Request a quote and we'll email you a secure payment link.');
-    }catch(_){fail('Online payment isn't live yet. Send us your part numbers through Request a quote and we'll email you a secure payment link.');}
+      fail(j.error||'Online payment is not live yet. Send us your part numbers through Request a quote and we will email you a secure payment link.');
+    }catch(_){fail('Online payment is not live yet. Send us your part numbers through Request a quote and we will email you a secure payment link.');}
   });
   async function renderDone(){
     const id=new URLSearchParams(location.search).get('session_id');
