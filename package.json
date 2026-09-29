@@ -1,0 +1,10 @@
+{
+  "name": "waypoint-zero",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "stripe": "22.6.2"
+  }
+}
